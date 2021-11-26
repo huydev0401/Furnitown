@@ -114,8 +114,20 @@ $(window).on("load", function () {
     pageDots: false,
     wrapAround: true,
   });
-  $(".--next").on("click", function () {
-    $product__list.flickity("next");
+  $(".next1").on("click", function () {
+    $(".product1page .product .list1").flickity("next");
+  });
+  $(".next2").on("click", function () {
+    $(".product1page .product .list2").flickity("next");
+  });
+  $(".next3").on("click", function () {
+    $(".product1page .product .list3").flickity("next");
+  });
+  $(".next4").on("click", function () {
+    $(".product1page .product .list4").flickity("next");
+  });
+  $(".next5").on("click", function () {
+    $(".product1page .product .list5").flickity("next");
   });
 
   let $img__list = $(".product3 .product__detail .image__list");
