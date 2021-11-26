@@ -164,6 +164,7 @@
       grid-template-columns: repeat(2, 1fr);
       background-color: rgba(#f1fdfc, 0.6);
       &__btn {
+        cursor: pointer;
         opacity: 0.8;
         display: inline-flex;
         align-items: center;
