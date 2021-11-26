@@ -17,7 +17,7 @@ $(window).on("load", function () {
 
   function scrollHeader() {
     let scrollY = $(window).scrollTop();
-    if (scrollY > $header.outerHeight()) {
+    if (scrollY > 450) {
       $scrollMenu.addClass("active");
     } else {
       $scrollMenu.removeClass("active");
