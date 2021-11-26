@@ -1,0 +1,90 @@
+.servicepage {
+  .service {
+    position: relative;
+    margin-top: 35px;
+    .btnmenu {
+      position: absolute;
+      top: 170px;
+      left: 0;
+    }
+    &__panel {
+      text-align: center;
+      .heading {
+        margin-bottom: 35px;
+      }
+    }
+    .design {
+      padding: 35px 30px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #585958;
+      & > * {
+        width: 50%;
+      }
+      .content {
+        .heading {
+          margin-bottom: 25px;
+        }
+        .desc:first-of-type {
+          max-width: 442px;
+          margin-bottom: 35px;
+        }
+      }
+      .btn__group {
+        text-align: right;
+      }
+    }
+    .project {
+      padding: 75px 0;
+      text-align: center;
+      .heading {
+        margin-bottom: 15px;
+      }
+      .desc {
+        max-width: 595px;
+        margin: 0 auto;
+        margin-bottom: 50px;
+      }
+    }
+  }
+  @include md {
+    .service {
+      .btnmenu {
+        display: none;
+      }
+      .design {
+        .content {
+          padding-right: 30px;
+        }
+      }
+    }
+  }
+  @include sm {
+    .service {
+      .design {
+        flex-direction: column;
+        & > * {
+          width: 100%;
+        }
+        .content {
+          padding-right: initial;
+          margin-bottom: 50px;
+        }
+        .btn__group {
+          text-align: center;
+        }
+      }
+    }
+  }
+  @include xs {
+    .service {
+      .design {
+        padding-bottom: 60px;
+      }
+      .project {
+        padding-top: 55px;
+      }
+    }
+  }
+}

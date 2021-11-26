@@ -1,0 +1,47 @@
+// css header
+header {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  .menu {
+    margin-top: 45px;
+    display: flex;
+    align-items: center;
+    li {
+      a {
+        letter-spacing: 0.11rem;
+        @include text(1.1rem, AB, normal, $white-cl, uppercase);
+        &:first-child {
+          margin: 0 20px 0 10px;
+        }
+      }
+      img {
+        width: 20px;
+        margin-left: 15px;
+        @include transform(translateX(0));
+        @include transition($t);
+      }
+      &:hover {
+        img {
+          @include transform(translateX(30%));
+        }
+      }
+    }
+  }
+  &.--dark {
+    position: initial;
+    .menu {
+      li {
+        a {
+          color: $text-cl;
+        }
+      }
+    }
+  }
+  @include xs {
+    .menu {
+      display: none;
+    }
+  }
+}

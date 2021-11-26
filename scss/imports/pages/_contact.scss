@@ -1,0 +1,122 @@
+.contactpage {
+  .contact {
+    width: 100%;
+    background: url("../img/contact1.jpg") no-repeat center center / cover;
+    padding: 150px 0 120px;
+    position: relative;
+    .btnmenu {
+      position: absolute;
+      top: 250px;
+      left: 0;
+    }
+    .title {
+      @include text(1.2rem, AB, 1, #ab9051, uppercase);
+      margin-bottom: 25px;
+    }
+    .desc {
+      @include text(1.2rem, AR, 2.2rem, #fff, none);
+      letter-spacing: 0.12rem;
+    }
+    &__top {
+      display: flex;
+      justify-content: space-between;
+      gap: 0 50px;
+      .left {
+        flex: 1;
+        .desc {
+          max-width: 300px;
+        }
+      }
+      .right {
+        flex: 1;
+        margin-left: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 30px 0;
+        .info:last-child {
+          grid-column: 1 / span 2;
+        }
+      }
+    }
+    &__bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 0 50px;
+      & > * {
+        flex: 1;
+      }
+      span {
+        display: block;
+        @include text(1.2rem, AR, normal, #fff, none);
+        letter-spacing: 0.12rem;
+      }
+      input,
+      textarea {
+        width: 100%;
+        outline: none;
+        background-color: transparent;
+        border: none;
+        @include text(1.2rem, AR, 1, #fff, none);
+      }
+      input {
+        margin: 25px 0 30px;
+        border-bottom: 1px solid #ab9051;
+      }
+      textarea {
+        line-height: 4rem;
+        height: 90px;
+        border: 1px solid #ab9051;
+        margin: 38px 0 30px;
+        border-radius: 4px;
+        padding: 10px;
+      }
+      .left {
+        .desc {
+          max-width: 300px;
+          margin-bottom: 30px;
+        }
+      }
+      .right {
+        padding-top: 74px;
+        .send {
+          text-align: right;
+          .btn__send {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $black-cl;
+            height: 35px;
+            padding: 0 35px;
+            border: 1px solid #ab9051;
+            @include text(1rem, AB, 7rem, #d4cebf, uppercase);
+          }
+        }
+      }
+    }
+    @include md {
+      .btnmenu {
+        display: none;
+      }
+    }
+    @include xs {
+      padding: 150px 0 60px;
+      &__top,
+      &__bottom {
+        flex-direction: column;
+      }
+      &__top {
+        .right {
+          margin-top: 30px;
+        }
+      }
+      &__bottom {
+        .right {
+          padding-top: 10px;
+          .send {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,102 @@
+.newdetailpage {
+  header {
+    margin-top: 50px;
+    .menu {
+      margin-top: initial;
+    }
+    .container-fluid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  .newdetail {
+    position: relative;
+    margin-top: 100px;
+    .btnmenu {
+      position: absolute;
+      top: 80px;
+    }
+    .new__top {
+      margin-bottom: 130px;
+      .heading {
+        margin-top: 60px;
+        @include text(2rem, ER, 3.2rem, $black-cl, uppercase);
+        letter-spacing: 0.2rem;
+      }
+      .title {
+        margin-top: 40px;
+        @include text(1.2rem, AB, 2.2rem, $black-cl, uppercase);
+        letter-spacing: 0.12rem;
+        max-width: 675px;
+      }
+      span {
+        display: block;
+        margin-top: 30px;
+        @include text(1.2rem, AR, 2.2rem, $black-cl, none);
+        letter-spacing: 0.12rem;
+        font-style: italic;
+      }
+      .desc {
+        margin-top: 30px;
+        @include text(1.2rem, AR, 2.2rem, $black-cl, none);
+        letter-spacing: 0.12rem;
+      }
+    }
+    .new__bottom {
+      margin-bottom: 60px;
+      .new__title {
+        text-align: center;
+        margin-bottom: 50px;
+        @include text(1.1rem, AB, 2.2rem, $black-cl, uppercase);
+        letter-spacing: 0.11rem;
+        position: relative;
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+          width: 42%;
+          height: 1px;
+          background-color: #585958;
+          top: 50%;
+          @include transform(translateY(-50%));
+        }
+        &:before {
+          left: 0;
+        }
+        &:after {
+          right: 0;
+        }
+      }
+      .news.item__list {
+        &::before,
+        &:after {
+          display: none;
+        }
+      }
+    }
+    @include sm {
+      .new__bottom {
+        .new__title {
+          &:before,
+          &:after {
+            width: 38%;
+          }
+        }
+      }
+      .news.item__list {
+        --column: 1;
+      }
+    }
+    @include xs {
+      .new__bottom {
+        .new__title {
+          &:before,
+          &:after {
+            width: 30%;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,434 @@
+.slider {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  @include transition($t);
+  .flickity-viewport {
+    height: 100% !important;
+  }
+  &__list {
+    @include size(100%);
+  }
+  &__item {
+    @include size(100%);
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba($black-cl, 0.3);
+    }
+    &.is-selected .slider__content .heading,
+    &.is-selected .slider__content .desc {
+      @include show;
+      @include transform(translateY(0));
+      @include transition-delay(var(--delay));
+    }
+    &.is-selected .slider__content .slider__btn {
+      @include show;
+      @include transform(translateY(0));
+      @include transition-delay(var(--delay));
+    }
+    &.is-selected .slider__content .line {
+      @include transform(scale(1));
+      @include transition($t2);
+      @include transition-delay(var(--delay));
+    }
+  }
+  &__content {
+    color: $white-cl;
+    max-width: 100%;
+    width: 770px;
+    @include mid;
+    text-align: center;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .heading {
+      @include text(var(--h1-fs), ER, var(--h1-lh), inherit, uppercase);
+      @include hide;
+      @include transform(translateY(30px));
+      @include transition($t2);
+      @include transition-delay(var(--delay));
+    }
+    .line {
+      width: 100%;
+      height: 1px;
+      background-color: white;
+      margin-bottom: 25px;
+      @include transform(scale(0));
+      @include transition($t2);
+      @include transition-delay(var(--delay));
+    }
+    .desc {
+      @include text(1.2rem, AB, 2, inherit, uppercase);
+      @include hide;
+      @include transform(translateY(-30px));
+      @include transition($t2);
+      @include transition-delay(var(--delay));
+    }
+  }
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &__btn {
+    width: 160px;
+    margin-top: 50px;
+    background-color: $black-cl;
+    border-radius: 4px;
+    color: #fff;
+    @include hide;
+    @include transform(translateY(30px));
+    @include transition(width $t);
+    @include transition(transform $t2);
+    @include transition-delay(var(--delay));
+    span {
+      position: relative;
+      width: 100%;
+      @include transform(translate(0));
+      @include transition($t);
+    }
+    span:before {
+      content: "";
+      position: absolute;
+      width: 0px;
+      height: 1px;
+      background-color: #fff;
+      top: 50%;
+      right: 135px;
+      @include transition($t);
+    }
+    &:hover {
+      width: 180px;
+      span {
+        @include transform(translate(10px));
+      }
+      span:before {
+        width: 30px;
+      }
+    }
+  }
+  &__bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-bottom: 20px;
+    @include transition($t);
+    .movedown {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      &:before {
+        content: "";
+        width: 1px;
+        height: 120px;
+        background-color: white;
+        display: block;
+        margin-bottom: 6px;
+      }
+      .mouse {
+        position: relative;
+        img {
+          margin-bottom: 10px;
+          width: 25px;
+        }
+        .dot {
+          position: absolute;
+          @include size(4px);
+          border-radius: 50%;
+          background-color: #fff;
+          bottom: 40px;
+          left: 10px;
+          animation: 1s move linear infinite;
+        }
+      }
+      p {
+        @include text(1.1rem, AB, 1.8, $white-cl, uppercase);
+      }
+    }
+    .control {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      @include size(100px, 40px);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      background-color: rgba(#f1fdfc, 0.6);
+      &__btn {
+        opacity: 0.8;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+          background-color: rgba(#f1fdfc, 0.8);
+        }
+        img {
+          @include size(20px);
+        }
+      }
+      .--next {
+        margin-left: -1px;
+        img {
+          @include transform(rotate(-180deg));
+        }
+      }
+    }
+  }
+  .btnmenu {
+    position: absolute;
+    top: 50%;
+    @include transform(translateY(-50%));
+    z-index: 50;
+  }
+  @include md {
+    &__content {
+      .line {
+        width: 80%;
+      }
+    }
+  }
+  @include sm {
+    .btnmenu {
+      display: none;
+    }
+  }
+  @include xs {
+    height: 320px;
+    margin-top: var(--header-mobile);
+    &__item {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    &__content {
+      display: none;
+    }
+    &__bottom {
+      .movedown {
+        display: none;
+      }
+    }
+  }
+}
+.carousel__contain {
+  margin: 30px auto 0;
+  display: none;
+  text-align: center;
+  .heading {
+    @include text(var(--h1-fs), ER, var(--h1-lh), inherit, uppercase);
+  }
+  .line {
+    width: 100%;
+    height: 1px;
+    background-color: $black-cl;
+    margin-bottom: 25px;
+  }
+  .desc {
+    @include text(1.2rem, AB, 2, inherit, uppercase);
+    max-width: 315px;
+    margin: auto;
+  }
+  .carousel__btn {
+    @include text(1.1rem, AB, 1.8, $white-cl, uppercase);
+    padding: 0 35px;
+    height: 35px;
+    background-color: $btn-cl;
+    border-radius: 4px;
+    margin-top: 50px;
+  }
+  @include xs {
+    display: block;
+  }
+}
+
+.furniture {
+  --column: 2;
+  --spacing: 30px;
+  margin-top: var(--ptop);
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(-1 * var(--spacing));
+    &.--reverse {
+      flex-direction: row-reverse;
+      .furniture__item {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+      }
+      .furniture__content {
+        margin-top: auto;
+        margin-bottom: initial;
+        text-align: right;
+        max-width: 475px;
+        @include text(1.5rem, ESBI, 3rem, #fff, none);
+        position: relative;
+        span {
+          color: $yellow-cl;
+        }
+        .pen {
+          position: absolute;
+          right: -50px;
+          top: 30px;
+          z-index: -1;
+        }
+      }
+    }
+  }
+  &__item {
+    width: calc(calc(100% / var(--column)) - var(--spacing));
+    margin-left: var(--spacing);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    &.--full {
+      --column: 1;
+    }
+  }
+  &__content {
+    line-height: 4rem;
+    max-width: 380px;
+    margin-bottom: auto;
+  }
+  &__image {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    .heading {
+      @include text(1.2rem, AB, 4rem, $text-cl, uppercase);
+      margin-bottom: 14px;
+    }
+    .img {
+      overflow: hidden;
+      position: relative;
+      &:hover {
+        img {
+          @include transform(scale(1.1));
+        }
+        .overlay {
+          opacity: 1;
+          @include transform(scale(1));
+        }
+      }
+      img {
+        width: 100%;
+        @include transform(scale(1));
+        @include transition(all 1s);
+      }
+      .overlay {
+        opacity: 0;
+        @include transform(scale(0.8));
+        @include transition(all $t);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        img {
+          width: 20px;
+        }
+        p {
+          color: #fff;
+          margin: 15px 0 20px;
+        }
+        a {
+          @include text(1.1rem, AB, 4rem, #fff, uppercase);
+          &:hover {
+            img {
+              @include transform(translateX(10px));
+            }
+          }
+          img {
+            margin-left: 20px;
+            @include transform(translateX(0));
+            @include transition($t);
+          }
+        }
+        &.--blue {
+          background-color: rgba($blue-l-cl, 0.8);
+        }
+        &.--yellow {
+          background-color: rgba($yellow-l-cl, 0.8);
+        }
+      }
+    }
+  }
+  @include sm {
+    --column: 1;
+    &__list {
+      &.--reverse {
+        flex-direction: column-reverse;
+        .furniture__item {
+          align-items: initial;
+        }
+        .furniture__content {
+          text-align: center;
+          margin: 100px auto 0;
+          .pen {
+            right: initial;
+            left: 50%;
+            top: 120px;
+            @include transform(translateX(-50%));
+          }
+        }
+      }
+    }
+  }
+  @include xs {
+    &__list {
+      .furniture__content.hide {
+        display: none;
+      }
+    }
+  }
+}
+
+.bg {
+  height: 455px;
+  background-color: $blue-cl;
+  margin-top: -400px;
+  position: relative;
+  z-index: -2;
+  @include sm {
+    height: 555px;
+    margin-top: -480px;
+  }
+  @include xs {
+    height: 510px;
+    margin-top: -435px;
+  }
+}
+
+.overlay-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+}
+
+@keyframes move {
+  from {
+    opacity: 0;
+    @include transform(translateY(0));
+  }
+  to {
+    opacity: 1;
+    @include transform(translateY(20px));
+  }
+}

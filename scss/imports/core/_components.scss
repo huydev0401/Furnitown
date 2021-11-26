@@ -1,0 +1,626 @@
+// css img, button, heading, title, input, elements, components...
+img {
+  max-width: 100%;
+  height: auto;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  &.--center {
+    margin: 0 auto;
+    display: block;
+  }
+}
+a {
+  text-decoration: none;
+}
+
+// colors (tuỳ chỉnh)
+.--white-cl {
+  color: $white-cl;
+}
+.--black-cl {
+  color: $black-cl;
+}
+.--blue-cl {
+  color: $blue-cl;
+}
+
+// css article (nội dung chi tiết bài viết)
+article {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    // font-family: ib; // font bold
+    display: block;
+  }
+
+  p {
+    margin: 0 0 1.12rem 0;
+  }
+  strong {
+    font-family: AB;
+  }
+  ol,
+  ul {
+    list-style: initial;
+    padding-left: 18px;
+  }
+  img {
+    display: inline-block;
+    height: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 25px auto;
+  }
+  .video {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    position: relative;
+    margin: 25px auto;
+    iframe,
+    video {
+      position: absolute;
+      @include size(100%);
+      top: 0;
+      left: 0;
+    }
+  }
+  @include xs {
+    img {
+      margin: 20px auto;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  @include size(200px, 35px);
+  @include text(1.1rem, AB, 2rem, $black-cl, uppercase);
+  &.--border {
+    border: 1px solid #585958;
+  }
+  &.--yellow {
+    position: relative;
+    @include transition(color $t cubic-bezier(0.79, 0.33, 0.16, 0.94));
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $yellow-cl;
+      z-index: -1;
+      @include transform(scaleX(0));
+      @include transform-origin(right);
+      @include transition(transform $t cubic-bezier(0.79, 0.33, 0.16, 0.94));
+    }
+    &:hover {
+      color: #fff;
+      &:before {
+        @include transform(scaleX(1));
+        @include transform-origin(left);
+      }
+    }
+  }
+  @include xs {
+    width: 150px;
+  }
+}
+
+.btn__group {
+  .btn + .btn {
+    margin-left: 30px;
+  }
+  @include xs {
+    .btn + .btn {
+      margin-left: 15px;
+    }
+  }
+}
+
+.hamburger {
+  @include size(40px, 22px);
+  position: relative;
+  z-index: 100;
+  cursor: pointer;
+  display: inline-block;
+  span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+  }
+  &:before,
+  &:after {
+    display: block;
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    @include transform(rotate(0deg) translate(0px, 0px));
+    @include transition($t);
+  }
+  &:before {
+    top: 0;
+  }
+  &:after {
+    bottom: 0;
+  }
+  &.active {
+    span {
+      opacity: 0;
+    }
+    &:before {
+      @include transform(rotate(45deg) translate(14px, 0px));
+    }
+    &:after {
+      @include transform(rotate(-45deg) translate(14px, 0px));
+    }
+  }
+}
+
+.btnmenu {
+  text-align: center;
+  cursor: pointer;
+  @include size(150px);
+  @include transition(all $t);
+  padding: 30px 0;
+  background-color: $blue-cl;
+  border-radius: 2px;
+  & > * {
+    pointer-events: none;
+  }
+  .logo img {
+    width: 40px;
+    cursor: pointer;
+  }
+  .hamburger {
+    margin-top: 20px;
+  }
+  .logo-black {
+    position: relative;
+    @include transform(translateX(0));
+    @include transition(0.5s);
+    &:before {
+      content: "";
+      width: 0;
+      position: absolute;
+      left: 70px;
+      bottom: -6px;
+      background-color: $black-cl;
+      @include transition(all $t);
+    }
+    img {
+      display: block;
+      width: 0px;
+      margin-top: -10px;
+      margin-left: 70px;
+    }
+  }
+  .menu-hover {
+    height: 0;
+    p {
+      @include text(0, AB, 1, $black-cl, uppercase);
+      padding-left: 20px;
+      display: flex;
+      align-items: center;
+    }
+  }
+  &:hover {
+    width: 180px;
+    background-color: #fff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    .hamburger {
+      display: none;
+    }
+    .logo {
+      display: none;
+    }
+    .logo-black {
+      @include transform(translateX(10px));
+      &:before {
+        width: 80px;
+        height: 1px;
+      }
+    }
+    .logo-black img {
+      width: 80px;
+    }
+    .menu-hover {
+      height: 100%;
+      p {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  @include sm {
+    display: none;
+  }
+}
+
+.btn__detail {
+  display: inline-flex;
+  align-items: center;
+  color: $text-cl;
+  font-family: AB;
+  text-transform: uppercase;
+  padding: 5px 0;
+  &:hover {
+    img {
+      @include transform(translateX(60px));
+    }
+    span {
+      @include transform(translateX(-30px));
+    }
+  }
+  img {
+    width: 20px;
+    margin-right: 10px;
+    @include transform(translateX(0));
+    @include transition($t);
+  }
+  span {
+    @include transform(translateX(0));
+    @include transition($t);
+  }
+}
+
+.control2 {
+  display: inline-flex;
+  align-items: center;
+  &__btn {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    @include size(80px);
+    border-radius: 50%;
+    background-color: $grey-cl;
+    & + .control2__btn {
+      margin-left: 20px;
+    }
+    &.--prev {
+      img {
+        @include transform(rotate(180deg));
+      }
+    }
+    img {
+      width: 12px;
+    }
+  }
+}
+
+.heading {
+  font-family: ER;
+  text-transform: uppercase;
+  &.--lg {
+    font-size: var(--h1-fs);
+    line-height: var(--h1-lh);
+  }
+  &.--md {
+    font-size: var(--h2-fs);
+    line-height: var(--h2-lh);
+    letter-spacing: 0.44rem;
+  }
+  &.--sm {
+    font-size: var(--h3-fs);
+    line-height: var(--h3-lh);
+    letter-spacing: 0.32rem;
+  }
+  &.--xs {
+    font-size: var(--h4-fs);
+    line-height: var(--h4-lh);
+    letter-spacing: 0.26rem;
+  }
+  &.--xxs {
+    font-size: var(--h5-fs);
+    line-height: var(--h5-lh);
+  }
+}
+
+.desc {
+  &.--lg {
+    font-size: 1.4rem;
+    line-height: 4.6rem;
+    letter-spacing: 0.14rem;
+  }
+  &.--md {
+    font-size: 1.2rem;
+    line-height: 2.6rem;
+    letter-spacing: 0.12rem;
+  }
+}
+
+.textbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  &__content {
+    display: flex;
+    align-items: center;
+    .num {
+      @include text(9rem, ER, 1, $yellow-cl, uppercase);
+      margin-right: 25px;
+    }
+    .text {
+      max-width: 430px;
+      .heading {
+        @include text(var(--h5-fs), ER, var(--h5-lh), inherit, uppercase);
+      }
+      .desc {
+        line-height: 2rem;
+      }
+    }
+  }
+  @include xs {
+    flex-direction: column;
+    margin-bottom: 30px;
+    .btn__detail {
+      margin-top: 20px;
+    }
+  }
+}
+
+.panel {
+  width: 100%;
+  height: 450px;
+  position: relative;
+  .slogan {
+    position: absolute;
+    top: 50%;
+    right: 245px;
+    max-width: 530px;
+    @include text(2.4rem, ER, 5rem, #fff, uppercase);
+    text-align: right;
+    @include transform(translateY(-50%));
+  }
+  .btnmenu {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  @include md {
+    .btnmenu {
+      display: none;
+    }
+  }
+  @include sm {
+    .slogan {
+      right: var(--gap);
+    }
+  }
+  @include xs {
+    height: 40vh;
+    margin-top: var(--header-mobile);
+  }
+}
+
+.item__list {
+  --column: 3;
+  --spacing: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(-1 * var(--spacing));
+  position: relative;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 93%;
+    background-color: #bebebe;
+  }
+  &:before {
+    left: calc(calc(100% / var(--column) + calc(var(--spacing) / 2)));
+  }
+  &:after {
+    right: calc(calc(100% / var(--column) - calc(var(--spacing) / 2)));
+  }
+  .item {
+    width: calc(calc(100% / var(--column)) - var(--spacing));
+    margin-left: var(--spacing);
+    margin-bottom: 30px;
+    cursor: pointer;
+    &:hover {
+      .img {
+        a {
+          &:before {
+            background-color: rgba(0, 0, 0, 0.2);
+          }
+          img {
+            @include transform(translate(-50%, -50%) scale(1.1));
+          }
+        }
+      }
+      .content {
+        background-color: $yellow-cl;
+      }
+    }
+    .img {
+      a {
+        display: block;
+        height: 0;
+        width: 100%;
+        padding-bottom: 62.8%;
+        overflow: hidden;
+        position: relative;
+        @include transition($t);
+        &:before {
+          content: "";
+          position: absolute;
+          z-index: 2;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: transparent;
+          @include transition($t);
+        }
+        img {
+          min-width: 100%;
+          min-height: 100%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          @include transform(translate(-50%, -50%) scale(1));
+          @include transition($t);
+        }
+      }
+    }
+    .content {
+      padding: 40px 20px 25px;
+      background-color: transparent;
+      @include transition($t);
+      .title {
+        display: inline-block;
+        @include text(1.2rem, AB, 2rem, $text-cl, uppercase);
+        margin-bottom: 20px;
+      }
+      .desc {
+        line-height: 2rem;
+        margin-bottom: 25px;
+      }
+      .btn__detail {
+        &:hover {
+          img {
+            @include transform(translateX(100px));
+          }
+        }
+      }
+    }
+    .detail {
+      padding: 30px 0 50px;
+      .title {
+        width: 100%;
+        font-size: var(--h5-fs);
+        line-height: var(--h5-lh);
+        color: $text-cl;
+      }
+      .prize {
+        line-height: 4rem;
+        letter-spacing: 0.12rem;
+        text-transform: uppercase;
+      }
+    }
+  }
+  @include xs {
+    --column: 1;
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  &:hover {
+    span {
+      @include transform(translateX(40px));
+    }
+    img {
+      @include transform(translateX(-150px) rotate(180deg));
+    }
+  }
+  span {
+    @include text(1.1rem, AB, 3rem, $text-cl, uppercase);
+    margin-right: 20px;
+    @include transform(translateX(0));
+    @include transition($t);
+  }
+  img {
+    width: 20px;
+    @include transform(translateX(0) rotate(180deg));
+    @include transition($t);
+  }
+}
+
+.pagination {
+  margin: 70px 0 80px;
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    li {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+      @include size(30px);
+      @include transition($t);
+      & + li {
+        margin-left: 15px;
+      }
+      &:hover,
+      &.active {
+        background-color: #ebebeb;
+        border: 1px solid;
+      }
+    }
+  }
+  @include sm {
+    margin: 50px 0 60px;
+  }
+}
+
+.load {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $black-cl;
+  z-index: 999;
+  @include mid(true);
+  &__animation {
+    @include size(50px);
+    border: 5px solid;
+    color: #3498db;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: loading 1s infinite linear;
+  }
+  @keyframes loading {
+    25% {
+      color: #2ecc71;
+    }
+    50% {
+      color: #f1c40f;
+    }
+    75% {
+      color: #e74c3c;
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

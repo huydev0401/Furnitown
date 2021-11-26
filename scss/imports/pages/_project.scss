@@ -1,0 +1,97 @@
+.projectpage {
+  .project {
+    position: relative;
+    margin-top: 100px;
+    .btnmenu {
+      position: absolute;
+      top: 130px;
+      left: 0;
+    }
+    &__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid #585958;
+      padding-bottom: 60px;
+      margin-bottom: 80px;
+      .left {
+        .desc {
+          margin-top: 20px;
+          max-width: 455px;
+        }
+      }
+      .dropdown {
+        position: relative;
+        cursor: pointer;
+        & > * {
+          pointer-events: none;
+        }
+        &.active {
+          .dropdown__list {
+            @include show;
+          }
+        }
+        .btn {
+          background-color: $black-cl;
+          color: #fff;
+          justify-content: space-between;
+          padding: 0 30px;
+          img {
+            width: 10px;
+          }
+        }
+        &__list {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          z-index: 3;
+          @include hide;
+          @include transition($t);
+          p {
+            cursor: pointer;
+            height: 50px;
+            width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $yellow-cl;
+            @include text(1.1rem, AB, 5rem, #fff, uppercase);
+            & + p {
+              border-top: 1px solid #4a3c20;
+            }
+          }
+        }
+      }
+    }
+
+    @include md {
+      .btnmenu {
+        display: none;
+      }
+      &__top {
+        .left {
+          .desc {
+            max-width: 400px;
+          }
+        }
+      }
+    }
+    @include xs {
+      &__top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        padding-bottom: 50px;
+        margin-bottom: 70px;
+        .dropdown {
+          margin: 40px 0 20px;
+          .btn {
+            width: 200px;
+          }
+        }
+      }
+    }
+    @include md {
+      margin-top: 50px;
+    }
+  }
+}

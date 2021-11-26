@@ -1,0 +1,294 @@
+// css navigator (Menu)
+.sidebar {
+  padding: 45px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 100vh;
+  background-color: $nav-cl;
+  z-index: 200;
+  @include hide;
+  @include transform(translateX(-100%));
+  @include transition($t);
+  &.active {
+    @include show;
+    @include transform(translateX(0));
+  }
+  .top {
+    margin-bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      @include text(1.1rem, AB, 3rem, $white-cl, uppercase);
+    }
+    .follow {
+      display: flex;
+      align-items: center;
+      gap: 0 20px;
+      img {
+        width: 20px;
+      }
+    }
+  }
+  .content {
+    display: flex;
+    align-items: baseline;
+    .left {
+      margin-right: 45px;
+      text-align: center;
+      .logo {
+        cursor: pointer;
+        position: relative;
+        padding-bottom: 20px;
+        &:hover {
+          img {
+            @include transform(scale(0.8));
+          }
+        }
+        &:before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          @include transform(translateX(-50%));
+          width: 80px;
+          height: 1px;
+          background-color: #fff;
+        }
+        margin-bottom: 20px;
+        a {
+          display: inline-block;
+        }
+        img {
+          width: 40px;
+          @include transform(scale(1));
+          @include transition($t);
+        }
+      }
+      .close {
+        cursor: pointer;
+        &:hover {
+          img {
+            @include transform(scale(0.8));
+          }
+        }
+        img {
+          width: 30px;
+          @include transform(scale(1));
+          @include transition($t);
+        }
+      }
+    }
+    .right {
+      flex: 1;
+      ul {
+        li {
+          & + li {
+            margin-top: 40px;
+          }
+          &:hover {
+            .line {
+              opacity: 1;
+              &:before {
+                width: 100%;
+              }
+            }
+            a:before {
+              -webkit-clip-path: inset(0 0 0 0);
+              clip-path: inset(0 0 0 0);
+            }
+          }
+          .line {
+            width: 100%;
+            height: 1px;
+            background-color: #5f5f5f;
+            position: relative;
+            opacity: 0;
+            &::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 0%;
+              height: 1px;
+              background-color: #fff;
+              @include transition($t2 0.1s);
+            }
+          }
+          a {
+            display: block;
+            @include text(2.6rem, ER, 3rem, #5f5f5f, uppercase);
+            position: relative;
+            padding-bottom: 10px;
+            &:before {
+              content: attr(data-text);
+              position: absolute;
+              top: 0;
+              left: 0;
+              color: #fff;
+              -webkit-clip-path: inset(0 100% 0 0);
+              clip-path: inset(0 100% 0 0);
+              @include transition($t2 0.1s);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.scrollmenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--height-header);
+  background-color: $blue-cl;
+  z-index: 100;
+  @include hide;
+  @include transform(translateY(-100%));
+  @include transition($t);
+  &.active {
+    @include show;
+    @include transform(translateY(0));
+  }
+  .container {
+    height: 100%;
+  }
+  ul {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & > * {
+      flex: 1;
+    }
+    li {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      a {
+        @include text(1.1rem, AB, 1.8, $white-cl, uppercase);
+        position: relative;
+        &:before {
+          content: "";
+          position: absolute;
+          top: calc(100% + 4px);
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: #fff;
+          @include transform(scaleX(0));
+          @include transform-origin(right);
+          @include transition(
+            transform $t cubic-bezier(0.79, 0.33, 0.16, 0.94)
+          );
+        }
+        &:hover {
+          &:before {
+            @include transform(scaleX(1));
+            @include transform-origin(left);
+          }
+        }
+      }
+    }
+    img {
+      width: 50px;
+    }
+  }
+  @include sm {
+    ul {
+      li + li {
+        margin-left: 45px;
+      }
+    }
+  }
+  @include xs {
+    display: none;
+  }
+}
+
+.menu-mobile {
+  display: none;
+  @include size(100%, var(--header-mobile));
+  background-color: $blue-cl;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+  .toggle-menu {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    & > span {
+      @include text(1.8rem, AB, 1.8, $white-cl, uppercase);
+      margin-left: 20px;
+      letter-spacing: 0.09rem;
+    }
+  }
+  .logo a {
+    display: inline-block;
+    img {
+      width: 80px;
+    }
+  }
+  @include xs {
+    display: block;
+  }
+}
+
+.nav-mobile {
+  position: fixed;
+  z-index: 300;
+  top: var(--header-mobile);
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $nav-cl;
+  @include transition($t);
+  @include transform(translateX(-100%));
+  @include hide;
+  &.active {
+    @include transform(translateX(0));
+    @include show;
+  }
+  .follow {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    span {
+      @include text(1.4rem, AB, 1.8, $white-cl, uppercase);
+    }
+    a {
+      display: inline-block;
+      margin-left: 30px;
+      img {
+        width: 30px;
+      }
+    }
+  }
+  ul {
+    margin-top: 50px;
+    li {
+      margin-bottom: 30px;
+      a {
+        @include text(2.6rem, ER, normal, #5f5f5f, uppercase);
+        @include transition($t);
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+  @include xsX {
+    overflow-y: scroll;
+  }
+}

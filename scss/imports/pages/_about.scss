@@ -1,0 +1,114 @@
+.aboutpage {
+  .about {
+    margin-top: 100px;
+    position: relative;
+    .btnmenu {
+      position: absolute;
+      left: 0;
+      top: 100px;
+    }
+    &__top {
+      text-align: center;
+      .heading {
+        color: $yellow-cl;
+        margin-bottom: 10px;
+      }
+      .heading + .desc {
+        text-transform: uppercase;
+      }
+      .heading ~ .desc {
+        max-width: 790px;
+        margin: 55px auto 20px;
+      }
+      .line {
+        height: 235px;
+        width: 1px;
+        background-color: #585958;
+        margin: 0 auto;
+      }
+    }
+    &__mid {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      img {
+        margin-top: 115px;
+      }
+    }
+    &__bottom {
+      text-align: center;
+      margin: 140px 0;
+      .desc {
+        line-height: 2.6rem;
+        &:first-of-type {
+          max-width: 695px;
+          margin: 0 auto;
+        }
+        &:last-of-type {
+          max-width: 590px;
+          margin: 0 auto;
+        }
+      }
+      .name {
+        display: block;
+        margin-top: 40px;
+        @include text(1.1rem, AB, 2.6rem, $text-cl, uppercase);
+        letter-spacing: 0.11rem;
+      }
+      .position {
+        display: block;
+        margin: 5px 0 40px;
+        @include text(1.1rem, AB, 2.6rem, $text-cl, none);
+        letter-spacing: 0.11rem;
+      }
+      .img {
+        position: relative;
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 80px;
+        .sign {
+          position: absolute;
+          bottom: -30px;
+          right: -30px;
+        }
+      }
+      .btn__group {
+        margin-top: 45px;
+      }
+    }
+    @include sm {
+      &__top {
+        .heading ~ .desc {
+          margin: 35px auto 20px;
+        }
+      }
+      &__mid {
+        img {
+          width: 300px;
+        }
+      }
+      &__bottom {
+        margin: 90px 0;
+      }
+    }
+    @include xs {
+      &__mid {
+        flex-direction: column;
+        .desc {
+          text-align: center;
+          margin: 30px auto;
+        }
+        img {
+          width: initial;
+          margin-top: initial;
+        }
+      }
+      &__bottom {
+        margin: 70px 0;
+        .img {
+          margin-bottom: 60px;
+        }
+      }
+    }
+  }
+}

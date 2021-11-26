@@ -1,0 +1,45 @@
+.product2 {
+  --pd: 90px;
+  --column: 3;
+  --spacing: 30px;
+  padding: var(--pd) 0;
+  .item {
+    .img {
+      a {
+        padding-bottom: 103.8%;
+      }
+    }
+  }
+  .more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    left: 50%;
+    @include transform(translateX(-50%));
+    bottom: -60px;
+    img {
+      width: 10px;
+      margin-bottom: 10px;
+      animation: 1s move2 infinite linear;
+    }
+    span {
+      @include text(1.1rem, AB, 4rem, #909090, uppercase);
+    }
+  }
+  @include xs {
+    --column: 1;
+  }
+
+  @keyframes move2 {
+    from {
+      opacity: 0;
+      @include transform(translateY(0));
+    }
+    to {
+      opacity: 1;
+      @include transform(translateY(15px));
+    }
+  }
+}
