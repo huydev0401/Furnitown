@@ -172,6 +172,11 @@
       a {
         @include text(1.1rem, AB, 1.8, $white-cl, uppercase);
         position: relative;
+        &.home {
+          &:before {
+            display: none;
+          }
+        }
         &:before {
           content: "";
           position: absolute;
